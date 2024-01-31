@@ -50,11 +50,18 @@ function setContent(data) {
   wind.innerHTML = `${parseInt(data.wind.speed)}km/h`;
 }
 
+function setAnimationStyles(weatherBox, weatherDetails, container) {
+  weatherBox.style.display = "";
+  weatherBox.classList.add("fadeIn");
+  weatherDetails.style.display = "";
+  weatherDetails.classList.add("fadeIn");
+  container.style.height = "590px";
+}
+
 search.addEventListener("click", () => {
   const APIkey = "23cd2c043cbc019a788ce4e129ebb683";
   const city = document.querySelector(".search-box input").value;
   if ((city === "") | undefined) return;
-
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${APIkey}`)
     .then((response) => response.json())
     .then((json) => {
@@ -63,11 +70,6 @@ search.addEventListener("click", () => {
       }
       handleChoseImage(json.weather[0].main, weatherImage);
       setContent(json);
-
-      weatherBox.style.display = "";
-      weatherBox.classList.add("fadeIn");
-      weatherDetails.style.display = "";
-      weatherDetails.classList.add("fadeIn");
-      container.style.height = "590px";
+      setAnimationStyles(weatherBox, weatherDetails, container);
     });
 });
