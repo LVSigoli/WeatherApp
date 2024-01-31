@@ -7,9 +7,9 @@ const error404 = document.querySelector(".not-found");
 search.addEventListener("click", () => {
   const APIkey = "23cd2c043cbc019a788ce4e129ebb683";
   const city = document.querySelector(".search-box input").value;
-  if ((city = "")) return;
+  if ((city === "") | undefined) return;
 
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metrics&appid=${APIkey}`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${APIkey}`)
     .then((response) => response.json())
     .then((json) => {
       if (json.cod === "404") {
@@ -32,19 +32,19 @@ search.addEventListener("click", () => {
 
       switch (json.weather[0].main) {
         case "Clear":
-          weatherImage.src = "../public/images/clear";
+          weatherImage.src = "../public/images/clear.png";
           break;
         case "Rain":
-          weatherImage.src = "../public/images/rain";
+          weatherImage.src = "../public/images/rain.png";
           break;
         case "Clouds":
-          weatherImage.src = "../public/images/cloud";
+          weatherImage.src = "../public/images/cloud.png";
           break;
         case "Mist":
-          weatherImage.src = "../public/images/mist";
+          weatherImage.src = "../public/images/mist.png";
           break;
         case "Snow":
-          weatherImage.src = "../public/images/snow";
+          weatherImage.src = "../public/images/snow.png";
           break;
       }
 
