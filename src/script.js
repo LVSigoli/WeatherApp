@@ -1,8 +1,9 @@
+const error404 = document.querySelector(".not-found");
 const container = document.querySelector(".container");
 const search = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box ");
+const weatherImage = document.querySelector(".weather-box img");
 const weatherDetails = document.querySelector(".weather-details ");
-const error404 = document.querySelector(".not-found");
 
 function handle404(code) {
   if (code === "404") {
@@ -14,6 +15,26 @@ function handle404(code) {
     return true;
   }
   return false;
+}
+
+function handleChoseImage(weather, weatherImage) {
+  switch (weather) {
+    case "Clear":
+      weatherImage.src = "../public/images/clear.png";
+      break;
+    case "Rain":
+      weatherImage.src = "../public/images/rain.png";
+      break;
+    case "Clouds":
+      weatherImage.src = "../public/images/cloud.png";
+      break;
+    case "Mist":
+      weatherImage.src = "../public/images/mist.png";
+      break;
+    case "Snow":
+      weatherImage.src = "../public/images/snow.png";
+      break;
+  }
 }
 
 search.addEventListener("click", () => {
@@ -36,23 +57,7 @@ search.addEventListener("click", () => {
       const humidity = document.querySelector(".humidity");
       const wind = document.querySelector(".wind");
 
-      switch (json.weather[0].main) {
-        case "Clear":
-          weatherImage.src = "../public/images/clear.png";
-          break;
-        case "Rain":
-          weatherImage.src = "../public/images/rain.png";
-          break;
-        case "Clouds":
-          weatherImage.src = "../public/images/cloud.png";
-          break;
-        case "Mist":
-          weatherImage.src = "../public/images/mist.png";
-          break;
-        case "Snow":
-          weatherImage.src = "../public/images/snow.png";
-          break;
-      }
+      handleChoseImage(json.weather[0].main, weatherImage);
 
       temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span> `;
       description.innerHTML = `${json.weather[0].description}`;
