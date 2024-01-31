@@ -17,7 +17,7 @@ body {
 .container {
     position: relative;
     width: 400px;
-    height: 605px;
+    height: 105px;
     background: #fff;
     padding: 28px 32px;
     overflow: hidden;
@@ -54,8 +54,8 @@ body {
 
 .search-box button {
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     color: #06283D;
     background: #dff6ff;
     border-radius: 50%;
@@ -176,4 +176,31 @@ body {
     font-size: 22px;
     font-weight: 500;
     margin-top: 12px;
+}
+
+.weather-box {
+
+    scale: 0;
+    opacity: 0;
+
+}
+
+.weather-details {
+
+    scale: 0;
+    opacity: 0;
+
+}
+
+
+.fade-in {
+    animation: 0.5s fadeIn forwards;
+    animation-delay: 0.5s
+}
+
+@keyframes fadeIn {
+    to {
+        scale: 1;
+        opacity: 1;
+    }
 }
