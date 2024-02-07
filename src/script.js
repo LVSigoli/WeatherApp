@@ -9,14 +9,18 @@ const search = document.querySelector(".search-box button");
 const weatherImage = document.querySelector(".weather-box img");
 const weatherDetails = document.querySelector(".weather-details ");
 
+function handle404TrueStyles(container, weatherBox, weatherDetails, error404) {
+  container.style.height = "400px";
+  weatherBox.style.display = "none";
+  weatherDetails.style.display = "none";
+  error404.style.display = "block";
+  error404.classList.add("fadeIn");
+  return true;
+}
+
 function handle404(code) {
   if (code === "404") {
-    container.style.height = "400px";
-    weatherBox.style.display = "none";
-    weatherDetails.style.display = "none";
-    error404.style.display = "block";
-    error404.classList.add("fadeIn");
-    return true;
+    return handle404TrueStyles(container, weatherBox, weatherDetails, error404);
   }
   error404.style.display = "none";
   error404.classList.add("remove");
