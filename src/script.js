@@ -9,7 +9,7 @@ const search = document.querySelector(".search-box button");
 const weatherImage = document.querySelector(".weather-box img");
 const weatherDetails = document.querySelector(".weather-details ");
 
-function handle404TrueStyles(container, weatherBox, weatherDetails, error404) {
+function Apply404Styles(container, weatherBox, weatherDetails, error404) {
   container.style.height = "400px";
   weatherBox.style.display = "none";
   weatherDetails.style.display = "none";
@@ -18,16 +18,19 @@ function handle404TrueStyles(container, weatherBox, weatherDetails, error404) {
   return true;
 }
 
-function handle404(code) {
-  if (code === "404") {
-    return handle404TrueStyles(container, weatherBox, weatherDetails, error404);
-  }
+function ApplyNot404Styles(error404) {
   error404.style.display = "none";
   error404.classList.add("remove");
   return false;
 }
+function handle404(code) {
+  if (code === "404") {
+    return Apply404Styles(container, weatherBox, weatherDetails, error404);
+  }
+  return ApplyNot404Styles(error404);
+}
 
-function handleChoseImage(weather, weatherImage) {
+function ChooseImage(weather, weatherImage) {
   switch (weather) {
     case "Clear":
       weatherImage.src = "../public/images/clear.png";
@@ -72,7 +75,7 @@ search.addEventListener("click", () => {
       if (handle404(json.cod)) {
         return;
       }
-      handleChoseImage(json.weather[0].main, weatherImage);
+      ChooseImage(json.weather[0].main, weatherImage);
       setContent(json);
       setAnimationStyles(weatherBox, weatherDetails, container);
     });
